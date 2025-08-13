@@ -23,15 +23,16 @@ type User struct {
 var users []User
 var currentID int = 1
 
+func getUsers(w http.ResponseWriter, _ *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(users)
+}
+
 func isEmailValid(email string) bool {
 	emailCheck := regexp.MustCompile(`^[a-zA-Z0-9]+(?:[@][a-zA-Z0-9]+)(?:[.][a-zA-Z0-9]+)+$`)
 	return emailCheck.MatchString(email)
 }
 
-func getUsers(w http.ResponseWriter, _ *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(users)
-}
 
 func createUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
