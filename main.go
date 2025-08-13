@@ -33,7 +33,6 @@ func isEmailValid(email string) bool {
 	return emailCheck.MatchString(email)
 }
 
-
 func createUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
